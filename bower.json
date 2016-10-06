@@ -1,0 +1,36 @@
+{
+  "name": "jquery-assinadorDigitalDiscus",
+  "description": "Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia",
+  "main": "dist/jquery-assinadorDigitalDiscus.js",
+  "authors": [
+    "Rodrigo Ramos <rodrigoramos@discustecnologia.com.br>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jQuery",
+    "jquery-plugin",
+    "plugin",
+    "Assinador",
+    "assinatura",
+    "digital",
+    "Discus",
+    "Tecnologia",
+    "certificado",
+    "A3",
+    "PKCS11",
+    "PKCS7",
+    "p7s",
+    "pdf"
+  ],
+  "homepage": "https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "^3.1.1"
+  }
+}

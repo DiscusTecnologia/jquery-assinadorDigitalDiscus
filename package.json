@@ -1,0 +1,44 @@
+{
+  "name": "jquery-assinadorDigitalDiscus",
+  "title": "jQuery Assinador Digital - Discus Tecnologia Plugin",
+  "version": "1.0.0",
+  "description": "Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia",
+  "main": "dist/jquery-assinadorDigitalDiscus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus.git"
+  },
+  "keywords": [
+    "jQuery",
+    "jquery-plugin",
+    "plugin",
+    "Assinador",
+    "assinatura digital",
+    "Discus",
+    "Tecnologia",
+    "certificado A3",
+    "PKCS11",
+    "PKCS7",
+    "p7s",
+    "pdf"
+  ],
+  "author": "Rodrigo Ramos <rodrigoramos@discustecnologia.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus/issues"
+  },
+  "homepage": "https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus",
+  "dependencies": {
+    "jQuery": "^1.7.4"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
