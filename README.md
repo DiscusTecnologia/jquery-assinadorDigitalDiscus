@@ -54,11 +54,11 @@ Para executar o Assinador Digital os usuários precisam ter o [Java SE Runtime E
 
 via npm
 ```sh
-npm install jquery-assinadorDigitalDiscus --save
+npm install jquery-assinadordigitaldiscus --save
 ```
 via bower
 ```sh
-bower install jquery-assinadorDigitalDiscus --save
+bower install jquery-assinadordigitaldiscus --save
 ```
 
 
