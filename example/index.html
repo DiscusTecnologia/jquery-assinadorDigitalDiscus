@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exemplo de uso jquery-assinadorDigitalDiscus</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/github.min.css" />
+	<link rel="stylesheet" href="css/default.css" />
+</head>
+
+<body>
+
+	<div class="container">
+      <div class="page-header">
+        <h1>jquery-assinadorDigitalDiscus</h1>
+      <p class="lead">Exemplo de uso do plugin para jQuery para usar o Assinador Digital - Discus Tecnologia</p>
+      </div>
+      <br>
+
+
+
+      <h3>Instruções</h3>
+      <p>Nesta página você encontra exemplos de uso do plugin e o próprio código fonte desta página também serve como documentação, então não deixe de conferir. A documentação do plugin você pode conferir em <a href="#">link para a documentação</a></p>
+      <p>Execute o Assinador Digital - Discus Tecnologia para que você possa testar os exemplos desta página.</p>
+      <p>Para mais informações sobre o Assinador Digital - Discus Tecnologia acesse: <a href="http://www.discustecnologia.com.br/assinador">http://www.discustecnologia.com.br/assinador</a>. Lá você também encontrará a documentação do assinador.</p>
+      <p>Entre em contato conosco e adquira sua licença do Assinador Digital - Discus Tecnologia<br>
+      <a href="http://www.discustecnologia.com.br/contato">http://www.discustecnologia.com.br/contato</a></p>
+      <br>
+
+
+      <h3>Testar se o Assinador Digital - Discus Tecnologia está online</h3>
+      <p>É possível testar se o assinador está ativo de duas maneiras: de forma síncrona ou assíncrona. Porém não recomendamos o uso da forma síncrona, que em breve funcionará apenas sob workers. Para maiores informações sobre o uso de Ajax acesse sua especificação em <a href="https://xhr.spec.whatwg.org/">https://xhr.spec.whatwg.org/</a>.</p>
+      <button onclick="isActive()" class="btn btn-primary">Testar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+//assíncrono - use este
+$.signerIsActive(function(active){
+	console.log(active);
+});
+
+//síncrono - deprecated
+console.log($.signerIsActiveSync());
+      </code></pre>
+      </div>
+      <br>
+
+
+
+      <h3>Assinar dados em formato texto</h3>
+      <p>Você pode enviar texto simples ou objetos JSON convertidos para texto, assim é possível gerar assinaturas digitais de dados que serão armazenados em bancos de dados tanto relacionais quanto não relacionais.</p>
+      <p>O retorno do assinador será um arquivo no formato .p7s, que é um arquivo de assinatura digital do tipo PKCS7 conforme a RFC2315. Mais detalhes neste link: <a href="https://tools.ietf.org/html/rfc2315">https://tools.ietf.org/html/rfc2315</a>.</p>
+      <p>Neste exemplo está sendo usado a biblioteca FileSaver.js. Mais detalhes em <a href="https://github.com/eligrey/FileSaver.js/">https://github.com/eligrey/FileSaver.js/</a>.</p>
+      Texto a assinar: <input type="text" id="toSignText"/>
+      <button onclick="signData()" class="btn btn-primary">Enviar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$.signData(JSON.stringify({"teste":123}), 'f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+	success: function(blob){
+		saveAs(blob, "textSignature.p7s");
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+});
+      </code></pre>
+      </div>
+      <br>
+
+
+
+      <h3>Assinar arquivo(s) PDF</h3>
+      <p>Você enviará arquivos PDF para o Assinador Digital - Discus Tecnologia assinar.</p>
+      <p>O retorno do assinador será outro arquivo PDF contendo a assinatura embutida no próprio arquivo.</p>
+      <p>É possível selecionar vários arquivos para enviar ao assinador, mas se o retorno for feito diretamente ao usuário ao invés de enviar o arquivo para o servidor, não recomendamos o uso desta forma, para que a usabilidade de seu sistema n~ao seja prejudicada, já pode ser chato para o usuário receber várias solicitações seguidas para salvar arquivos.</p>
+      <input type="file" id="pdfToSign" multiple="">
+      <button onclick="signPDF()" class="btn btn-primary">Enviar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$('#file').signPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+	success: function(blob){
+		saveAs(blob, "signed.pdf");
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+});
+      </code></pre>
+      </div>
+      <br>
+
+
+
+      <h3>Validar arquivo(s) .p7s</h3>
+      <p>Você enviará arquivos .p7s para o Assinador Digital - Discus Tecnologia validar.</p>
+      <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
+      <input type="file" id="p7sToVerify" multiple="">
+      <button onclick="verifyP7s()" class="btn btn-primary">Enviar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$('#file').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+	success: function(blob){
+		console.log(blob);
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+}, true); //o último argumento diz se será exibido a aplicação de validação do assinador, senão será retornado JSON
+      </code></pre>
+      </div>
+      <br>
+
+
+
+      <h3>Validar arquivo(s) PDF</h3>
+      <p>Você enviará arquivos PDF para o Assinador Digital - Discus Tecnologia validar.</p>
+      <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
+      <input type="file" id="pdfToVerify" multiple="">
+      <button onclick="verifyPDF()" class="btn btn-primary">Enviar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$('#file').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+	success: function(blob){
+		console.log(blob);
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+}, true); //o último argumento diz se será exibido a aplicação de validação do assinador, senão será retornado JSON
+      </code></pre>
+      </div>
+      <br>
+
+
+
+
+    </div>
+
+
+    <footer class="footer">
+      <div class="container-fluid">
+      	<div class="text-muted"><h5>Discus Tecnologia</h5></div>
+        <div class="logo-muted">
+        	<a href="http://www.discustecnologia.com.br"><img src="http://www.discustecnologia.com.br/images/logo_pq.png" height="30" alt="logo"></a>
+        </div>
+      </div>
+    </footer>
+
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-assinadorDigitalDiscus.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/languages/javascript.min.js"></script>
+<script type="text/javascript" src="js/example.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</html>

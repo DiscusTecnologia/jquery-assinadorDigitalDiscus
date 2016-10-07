@@ -159,7 +159,7 @@
 	 * @returns {callback} retorna arquivo .p7s em caso de sucesso ou
 	 * em caso de erro ou retorna um objeto JSON no seguinte formato: { "success": {Boolean}, "msg":{string} } ou uma mensagem em texto simples
 	 * @example
-	 * $.signData(JSON.stringify({"teste":123}), 'f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42' {
+	 * $.signData(JSON.stringify({"teste":123}), 'f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
 	 * 		success: function(blob){
 	 * 			saveAs(blob, "signed.p7s");
 	 * 		},
@@ -177,7 +177,7 @@
 
 	/**
 	 * Checar se o assinador está online.
-	 * @param {function(boolean active)} callback - Função de callback que recebe true se o assinador está ativo ou false caso contrário.
+	 * @param {function} callback - Função de callback que recebe true se o assinador está ativo ou false caso contrário.
 	 * @example
 	 * $.signerIsActive(function(active){console.log(active);});
 	 */

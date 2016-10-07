@@ -28,7 +28,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "out"
   ],
   "dependencies": {
     "jQuery": "^3.1.1"
