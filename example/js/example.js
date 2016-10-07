@@ -15,7 +15,7 @@ function signData() {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		});
 	}
@@ -31,7 +31,7 @@ function signPDF() {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		});
 	}
@@ -41,13 +41,13 @@ function verifyP7s() {
 	if($('#p7sToVerify')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo .p7s para ser validado');
 	} else {
-		$('#p7sToVerify').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		$('#p7sToVerify').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
 			success: function(blob){
 				console.log(blob);
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		}, true);
 	}
@@ -63,6 +63,7 @@ function verifyPDF() {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		}, true);
 	}
