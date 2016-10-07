@@ -1,5 +1,5 @@
 # jquery-assinadorDigitalDiscus
-![logo Discus Tecnologia](http://www.discustecnologia.com.br/images/logo_pq.png)
+[![logo Discus Tecnologia](http://www.discustecnologia.com.br/images/logo_pq.png)](http://www.discustecnologia.com.br)
 
 Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia
 
