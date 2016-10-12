@@ -1,3 +1,19 @@
+function getSignToken(action){
+	$.ajax({
+		url : 'http://teste.local/get_auth_key.php',
+		type : 'GET',
+		success : function(data, status, xhr) {
+			if(data.success){
+				action(data.authkey);
+			}
+		},
+		error: function(statusCode, msg){
+			console.log(statusCode == 0 ? msg: JSON.parse(msg));
+			alert(statusCode == 0 ? msg: JSON.parse(msg));
+		}
+	});
+}
+
 function isActive(){
 	$.signerIsActive(function(active){
 		console.log(active);
@@ -5,11 +21,11 @@ function isActive(){
 	});
 }
 
-function signData() {
+function signData(authKey) {
 	if($('#toSignText').val() == "") {
 		alert('Preencha o campo Texto a assinar');
 	} else {
-		$.signData($('#toSignText').val(), 'f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		$.signData($('#toSignText').val(), authKey, {
 			success: function(blob){
 				saveAs(blob, "textSignature.p7s");
 			},
@@ -21,11 +37,11 @@ function signData() {
 	}
 }
 
-function signPDF() {
+function signPDF(authKey) {
 	if($('#pdfToSign')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo PDF para ser assinado');
 	} else {
-		$('#pdfToSign').signPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		$('#pdfToSign').signPDF(authKey, {
 			success: function(blob){
 				saveAs(blob, "signed.pdf");
 			},
@@ -37,11 +53,11 @@ function signPDF() {
 	}
 }
 
-function verifyP7s() {
+function verifyP7s(authKey) {
 	if($('#p7sToVerify')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo .p7s para ser validado');
 	} else {
-		$('#p7sToVerify').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		$('#p7sToVerify').verifyData(authKey, {
 			success: function(blob){
 				console.log(blob);
 			},
@@ -53,11 +69,11 @@ function verifyP7s() {
 	}
 }
 
-function verifyPDF() {
+function verifyPDF(authKey) {
 	if($('#pdfToVerify')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo PDF para ser validado');
 	} else {
-		$('#pdfToVerify').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		$('#pdfToVerify').verifyPDF(authKey, {
 			success: function(blob){
 				console.log(blob);
 			},

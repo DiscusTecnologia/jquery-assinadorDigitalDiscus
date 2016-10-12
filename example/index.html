@@ -23,6 +23,7 @@
 
       <h3>Instruções</h3>
       <p>Nesta página você encontra exemplos de uso do plugin e o próprio código fonte desta página também serve como documentação, então não deixe de conferir. A documentação do plugin você pode conferir em <a href="https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus/wiki/Documenta%C3%A7%C3%A3o">https://github.com/DiscusTecnologia/jquery-assinadorDigitalDiscus/wiki/Documenta%C3%A7%C3%A3o</a></p>
+      <p>Para executar os exemplos em ambiente de testes local, mapeie esta pasta em seu servidor web para responder a url http://teste.local. Ao adquirir uma licença trial do assinador, você terá uma quantidade limitada de assinaturas, liberadas para esta url, para realizar testes localmente.</p>
       <p>Execute o Assinador Digital - Discus Tecnologia para que você possa testar os exemplos desta página.</p>
       <p>Para mais informações sobre o Assinador Digital - Discus Tecnologia acesse: <a href="http://www.discustecnologia.com.br/assinador">http://www.discustecnologia.com.br/assinador</a>. Lá você também encontrará a documentação do assinador.</p>
       <p>Entre em contato conosco e adquira sua licença do Assinador Digital - Discus Tecnologia<br>
@@ -54,7 +55,7 @@ console.log($.signerIsActiveSync());
       <p>O retorno do assinador será um arquivo no formato .p7s, que é um arquivo de assinatura digital do tipo PKCS7 conforme a RFC2315. Mais detalhes neste link: <a href="https://tools.ietf.org/html/rfc2315">https://tools.ietf.org/html/rfc2315</a>.</p>
       <p>Neste exemplo está sendo usado a biblioteca FileSaver.js. Mais detalhes em <a href="https://github.com/eligrey/FileSaver.js/">https://github.com/eligrey/FileSaver.js/</a>.</p>
       Texto a assinar: <input type="text" id="toSignText"/>
-      <button onclick="signData()" class="btn btn-primary">Enviar</button>
+      <button onclick="getSignToken(signData)" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
@@ -77,7 +78,7 @@ $.signData(JSON.stringify({"teste":123}), 'f348gf73gf3gfy73gg43g.f43f34gf34g43g3
       <p>O retorno do assinador será outro arquivo PDF contendo a assinatura embutida no próprio arquivo.</p>
       <p>É possível selecionar vários arquivos para enviar ao assinador, mas se o retorno for feito diretamente ao usuário ao invés de enviar o arquivo para o servidor, não recomendamos o uso desta forma, para que a usabilidade de seu sistema n~ao seja prejudicada, já pode ser chato para o usuário receber várias solicitações seguidas para salvar arquivos.</p>
       <input type="file" id="pdfToSign" multiple="">
-      <button onclick="signPDF()" class="btn btn-primary">Enviar</button>
+      <button onclick="getSignToken(signPDF)" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
@@ -99,7 +100,7 @@ $('#file').signPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g353
       <p>Você enviará arquivos .p7s para o Assinador Digital - Discus Tecnologia validar.</p>
       <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
       <input type="file" id="p7sToVerify" multiple="">
-      <button onclick="verifyP7s()" class="btn btn-primary">Enviar</button>
+      <button onclick="getSignToken(verifyP7s)" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
@@ -121,7 +122,7 @@ $('#file').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g
       <p>Você enviará arquivos PDF para o Assinador Digital - Discus Tecnologia validar.</p>
       <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
       <input type="file" id="pdfToVerify" multiple="">
-      <button onclick="verifyPDF()" class="btn btn-primary">Enviar</button>
+      <button onclick="getSignToken(verifyPDF)" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
