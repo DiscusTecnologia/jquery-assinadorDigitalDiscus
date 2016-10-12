@@ -142,6 +142,46 @@ $('#file').verifyPDF({
 
 
 
+
+      <h3>Assinar arquivo(s) PDF salvando no servidor</h3>
+      <p>Você enviará arquivos PDF para o Assinador Digital - Discus Tecnologia assinar e em seguida salvará o arquivo assinado em seu servidor.</p>
+      <p>O retorno do assinador será outro arquivo PDF contendo a assinatura embutida no próprio arquivo.</p>
+      <p>É possível selecionar vários arquivos para enviar ao assinador, mas se o retorno for feito diretamente ao usuário ao invés de enviar o arquivo para o servidor, não recomendamos o uso desta forma, para que a usabilidade de seu sistema n~ao seja prejudicada, já pode ser chato para o usuário receber várias solicitações seguidas para salvar arquivos.</p>
+      <input type="file" id="pdfToSignSave" multiple="">
+      <button onclick="getSignToken(signSavePDF)" class="btn btn-primary">Enviar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$('#file').signSavePDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+	success: function(blob){
+		var formData = new FormData();
+		var file = new File([blob, 'signed.pdf'], 'signed.pdf', {type: "application/pdf"});
+		formData.append('file', file);
+		$.ajax({
+			url : 'save_file.php',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : function(data) {
+				console.log(data);
+			},
+			error: function(statusCode, msg){
+				console.log(statusCode == 0 ? msg: JSON.parse(msg));
+			}
+		});
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+});
+      </code></pre>
+      </div>
+      <br>
+
+
+
+
     </div>
 
 

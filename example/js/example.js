@@ -84,3 +84,35 @@ function verifyPDF() {
 		}, true);
 	}
 }
+
+function signSavePDF(authKey) {
+	if($('#pdfToSignSave')[0].files.length == 0) {
+		alert('Selecione pelo menos um arquivo PDF para ser assinado');
+	} else {
+		$('#pdfToSignSave').signPDF(authKey, {
+			success: function(blob){
+				var formData = new FormData();
+				var file = new File([blob, 'signed.pdf'], 'signed.pdf', {type: "application/pdf"});
+				formData.append('file', file);
+				$.ajax({
+						url : 'save_file.php',
+						type : 'POST',
+						data : formData,
+						processData: false,  // tell jQuery not to process the data
+						contentType: false,  // tell jQuery not to set contentType
+						success : function(data) {
+							console.log(data);
+						},
+						error: function(statusCode, msg){
+							console.log(statusCode == 0 ? msg: JSON.parse(msg));
+							alert('status: ' + statusCode + ' - ' + msg);
+						}
+				});
+			},
+			error: function(statusCode, msg){
+				console.log(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
+			}
+		});
+	}
+}
