@@ -25,7 +25,8 @@ module.exports = function (grunt) {
       }
     },
     concat: {
-      'dist/jquery-assinadorDigitalDiscus.min.js': ['src/license.js', 'dist/jquery-assinadorDigitalDiscus.min.js']
+      'dist/jquery-assinadorDigitalDiscus.min.js': ['src/license.js', 'dist/jquery-assinadorDigitalDiscus.min.js'],
+      'example/js/jquery-assinadorDigitalDiscus.min.js': ['src/license.js', 'dist/jquery-assinadorDigitalDiscus.min.js']
     },
     copy: {
       main: {

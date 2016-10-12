@@ -101,11 +101,11 @@ $('#file').signPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g353
       <p>Você enviará arquivos .p7s para o Assinador Digital - Discus Tecnologia validar.</p>
       <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
       <input type="file" id="p7sToVerify" multiple="">
-      <button onclick="getSignToken(verifyP7s)" class="btn btn-primary">Enviar</button>
+      <button onclick="verifyP7s()" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
-$('#file').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+$('#file').verifyData({
 	success: function(blob){
 		console.log(blob);
 	},
@@ -123,11 +123,11 @@ $('#file').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g
       <p>Você enviará arquivos PDF para o Assinador Digital - Discus Tecnologia validar.</p>
       <p>O retorno do assinador poderá ser no formato JSON contendo os dados referentes a(s) assinatura(s) contidas no(s) arquivo(s) enviado(s), ou você pode pedir ao assinador que seja exibida a aplicação de validação do próprio assinador.</p>
       <input type="file" id="pdfToVerify" multiple="">
-      <button onclick="getSignToken(verifyPDF)" class="btn btn-primary">Enviar</button>
+      <button onclick="verifyPDF()" class="btn btn-primary">Enviar</button>
       <div class="code">
       Exemplo:
       <pre><code class="javascript">
-$('#file').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+$('#file').verifyPDF({
 	success: function(blob){
 		console.log(blob);
 	},

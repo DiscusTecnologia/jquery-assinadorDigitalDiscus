@@ -50,20 +50,19 @@
 		signPDF: function (authkey, obj) {
 			var urlService = 'http://localhost:5820/';
 			return this.each(function () {
-				sendToSigner(this, authkey, obj, urlService, true);
+				sendToSigner(this, authkey, obj, urlService, true, false);
 			});
 		},
 
 
 		/**
 		 * Envia arquivo PDF para validação da(s) assinatura(s) ao assinador
-	     * @param {string} authkey - Chave de autorização para assinatura no formato JWT (JSON Web Token) gerada no servidor da Discus Tecnologia.
 		 * @param {Object} obj - Objeto contendo as funções de callback success e error
 		 * @param {Boolean} showValidator - Se true exibe a aplicação de validação de assinaturas do assinador, se false retorna os dados da validação em formato JSON.
 		 * @returns {callback} retorna arquivo um objeto JSON informando que a validação está em andamento caso seja exibida a aplicação de validação do assinador,
 		 * um objeto JSON contendo informações sobre a(s) assinatura(s).
 		 * @example
-		 * $('#file').verifyPDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		 * $('#file').verifyPDF({
 		 * 		success: function(blob){
 		 * 			console.log(blob);
 		 * 		},
@@ -72,23 +71,22 @@
 		 * 		}
 		 * }, false);
 		 */
-		verifyPDF: function (authkey, obj, showValidator) {
+		verifyPDF: function (obj, showValidator) {
 			var urlService = 'http://localhost:5820/validapkcs7/pdf/'+(showValidator ? 'show_validator' : '');
 			return this.each(function () {
-				sendToSigner(this, authkey, obj, urlService, true);
+				sendToSigner(this, null, obj, urlService, true, true);
 			});
 		},
 
 
 		/**
 		 * Envia arquivo .p7s para validação da(s) assinatura(s) ao assinador
-	     * @param {string} authkey - Chave de autorização para assinatura no formato JWT (JSON Web Token) gerada no servidor da Discus Tecnologia.
 		 * @param {Object} obj - Objeto contendo as funções de callback success e error
 		 * @param {Boolean} showValidator - Se true exibe a aplicação de validação de assinaturas do assinador, se false retorna os dados da validação em formato JSON.
 		 * @returns {callback} retorna arquivo um objeto JSON informando que a validação está em andamento caso seja exibida a aplicação de validação do assinador,
 		 * um objeto JSON contendo informações sobre a(s) assinatura(s).
 		 * @example
-		 * $('#file').verifyData('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524g35342gt24g42', {
+		 * $('#file').verifyData({
 		 * 		success: function(blob){
 		 * 			console.log(blob);
 		 * 		},
@@ -97,10 +95,10 @@
 		 * 		}
 		 * }, false);
 		 */
-		verifyData: function (authkey, obj, showValidator) {
+		verifyData: function (obj, showValidator) {
 			var urlService = 'http://localhost:5820/validapkcs7/'+(showValidator ? 'show_validator' : '');
 			return this.each(function () {
-				sendToSigner(this, authkey, obj, urlService, true);
+				sendToSigner(this, null, obj, urlService, true, true);
 			});
 		}
 
@@ -120,27 +118,25 @@
 	 * @returns {callback} retorna arquivo .pdf assiando, .p7s de assinatura ou JSON com dados da validação da assinatura em caso de sucesso.
 	 * Em caso de erro ou retorna um objeto JSON no seguinte formato: { "success": {Boolean}, "msg":{string} } ou uma mensagem em texto simples.
      */
-	function sendToSigner(jqObj, authkey, obj, urlService, isFile) {
+	function sendToSigner(jqObj, authkey, obj, urlService, isFile, isValidation) {
 		var lenFiles = $(jqObj)[0].files.length;
 		for(var i = 0; i < lenFiles; i++){
 			var formData = new FormData();
 			if(!isFile) formData.append('tosign', $(jqObj)[0].files[i]);
-			formData.append('authkey', authkey);
+			if(!isValidation) formData.append('authkey', authkey);
 			if(isFile) formData.append('file', $(jqObj)[0].files[i]);
 
 			$.ajax({
 				url : urlService,
 				type : 'POST',
 				data : formData,
-				processData: false,  // tell jQuery not to process the data
-				contentType: false,  // tell jQuery not to set contentType
+				processData: false,
+				contentType: false, 
 				xhrFields : {
 					responseType : 'blob'
 				},
 				success: function(blob, status, xhr) {
 					if(typeof obj.success == 'function') obj.success(blob);
-					//blob = data;//xhr.response is now a blob object
-					//saveAs(blob, "teste.p7s"); //este funciona até no IE para fazer download do arquivo recebido
 				},
 				error: function(xhr, textStatus) {
 		        	if(typeof obj.error == 'function') obj.error(xhr.status, xhr.statusText);
@@ -170,7 +166,7 @@
 	 */
 	$.signData = function(data, authkey, obj){
 		var urlService = 'http://localhost:5820/dados/';
-		sendToSigner($({'files':[data]}), authkey, obj, urlService, false);
+		sendToSigner($({'files':[data]}), authkey, obj, urlService, false, false);
 	};
 
 

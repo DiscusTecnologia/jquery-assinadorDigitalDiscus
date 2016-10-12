@@ -53,11 +53,11 @@ function signPDF(authKey) {
 	}
 }
 
-function verifyP7s(authKey) {
+function verifyP7s() {
 	if($('#p7sToVerify')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo .p7s para ser validado');
 	} else {
-		$('#p7sToVerify').verifyData(authKey, {
+		$('#p7sToVerify').verifyData({
 			success: function(blob){
 				console.log(blob);
 			},
@@ -69,11 +69,11 @@ function verifyP7s(authKey) {
 	}
 }
 
-function verifyPDF(authKey) {
+function verifyPDF() {
 	if($('#pdfToVerify')[0].files.length == 0) {
 		alert('Selecione pelo menos um arquivo PDF para ser validado');
 	} else {
-		$('#pdfToVerify').verifyPDF(authKey, {
+		$('#pdfToVerify').verifyPDF({
 			success: function(blob){
 				console.log(blob);
 			},
