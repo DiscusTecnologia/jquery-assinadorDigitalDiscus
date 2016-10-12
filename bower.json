@@ -1,5 +1,5 @@
 {
-  "name": "jquery-assinadorDigitalDiscus",
+  "name": "jquery-assinadordigitaldiscus",
   "description": "Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia",
   "main": "dist/jquery-assinadorDigitalDiscus.js",
   "authors": [

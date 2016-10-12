@@ -1,7 +1,7 @@
 {
-  "name": "jquery-assinadorDigitalDiscus",
+  "name": "jquery-assinadordigitaldiscus",
   "title": "jQuery Assinador Digital - Discus Tecnologia Plugin",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia",
   "main": "dist/jquery-assinadorDigitalDiscus.js",
   "scripts": {

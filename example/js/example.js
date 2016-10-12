@@ -31,7 +31,7 @@ function signData(authKey) {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		});
 	}
@@ -47,7 +47,7 @@ function signPDF(authKey) {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		});
 	}
@@ -63,7 +63,7 @@ function verifyP7s(authKey) {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
-				alert(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		}, true);
 	}
@@ -79,6 +79,7 @@ function verifyPDF(authKey) {
 			},
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
+				alert('status: ' + statusCode + ' - ' + msg);
 			}
 		}, true);
 	}
