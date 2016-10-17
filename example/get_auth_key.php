@@ -11,7 +11,7 @@
 
 
 //coloque aqui seu token de identificação do cliente
-$clientToken = "hbf643bn37ugwg6442gff29fdwsfbqpewpaslfvmvbxasfoe285325fsd";
+$clientToken = "hbf643bn37ugwg6442gff29fdwsfbqpe";
 
 header('Content-Type: application/json');
 //cria um objeto padrão para facilitar a formatação do retorno
@@ -28,7 +28,9 @@ $headr[] = 'Authorization: Bearer '. $clientToken;
 
 curl_setopt_array($curl, array(
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_URL => 'http://discus.local/assinadorservice/getauthtoken',
+    CURLOPT_URL => 'https://discus.local/assinadorservice/getauthtoken',
+    CURLOPT_SSL_VERIFYPEER => false, //tirar para produção
+	CURLOPT_SSL_VERIFYHOST => false, //tirar para produção
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTPHEADER => $headr
 ));
