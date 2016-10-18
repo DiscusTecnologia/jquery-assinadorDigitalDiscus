@@ -1,8 +1,8 @@
 <?php
 /*
  * Assinador Digital - Discus Tecnologia
- * Exemplo de cógigo para pegar o token de autorização de assinatura no servidor Discus Tecnologia
- * para enviá-lo ao assinador permitindo assim realizar assinaturas de dados ou PDFs.
+ * Exemplo de cógigo para validar o token de autorização de assinatura no servidor Discus Tecnologia.
+ * Retorna informações sobre o token de autorização.
  *
  * Atenção!
  * Este é apenas um exemplo utilizando PHP, sinta-se a vontade para usar em outras linguagens, porém lembre-se
@@ -18,21 +18,25 @@ header('Content-Type: application/json');
 $retorno = new \StdClass;
 
 
-
-
 //envia clientToken para o servidor
 $curl = curl_init();
 
 $headr = array();
 $headr[] = 'Authorization: Bearer '. $clientToken;
 
+$fields = array(
+	"token" => $_POST['token']
+);
+
 curl_setopt_array($curl, array(
+	CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_URL => 'https://discus.local/assinadorservice/getauthtoken',
+    CURLOPT_URL => 'https://discus.local/assinadorservice/getinfoauthtoken',
     CURLOPT_SSL_VERIFYPEER => false, //tirar para produção
 	CURLOPT_SSL_VERIFYHOST => false, //tirar para produção
     CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTPHEADER => $headr
+    CURLOPT_HTTPHEADER => $headr,
+    CURLOPT_POSTFIELDS => $fields
 ));
 
 $resp = curl_exec($curl);
@@ -51,11 +55,11 @@ curl_close($curl);
 
 
 
-//recebe authkey do servidor no formato JWT (JSON Web Token)
-$jwt = $resp;
+//recebe informações sobre o authkey do servidor no formato JSON
+$json = $resp;
 
 $retorno->success = true;
-$retorno->authkey = $jwt;
+$retorno->validacao = json_decode($json);
 $retorno->codeError = 0;
 $retorno->errorMessage = "";
 //envia resposta formatada em JSON para a aplicação

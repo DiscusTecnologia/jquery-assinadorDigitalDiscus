@@ -1,9 +1,12 @@
+var signToken = null;
+
 function getSignToken(action){
 	$.ajax({
 		url : 'http://teste.local/get_auth_key.php',
 		type : 'GET',
 		success : function(data, status, xhr) {
 			if(data.success){
+				signToken = data.authkey;
 				action(data.authkey);
 			}
 		},
@@ -112,6 +115,28 @@ function signSavePDF(authKey) {
 			error: function(statusCode, msg){
 				console.log(statusCode == 0 ? msg: JSON.parse(msg));
 				alert('status: ' + statusCode + ' - ' + msg);
+			}
+		});
+	}
+}
+
+function checkSignToken(){
+	if(signToken == null){
+		alert("Realize uma assinatura antes");
+	}else{
+		$.ajax({
+			url : 'http://teste.local/check_auth_key.php',
+			type : 'POST',
+			data : {token : signToken},
+			success : function(data, status, xhr) {
+				if(data.success){
+					console.log(data);
+					alert("Saída no console");
+				}
+			},
+			error: function(statusCode, msg){
+				console.log(statusCode == 0 ? msg: JSON.parse(msg));
+				alert(statusCode == 0 ? msg: JSON.parse(msg));
 			}
 		});
 	}

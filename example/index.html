@@ -182,6 +182,33 @@ $('#file').signSavePDF('f348gf73gf3gfy73gg43g.f43f34gf34g43g34g45g34.g45g542g524
 
 
 
+      <h3>Recuperar informações sobre a requisição de assinatura</h3>
+      <p>Este exemplo retorna informações sobre a requisição de assinatura, como data da solicitação, data da assinatura, usuário que assinou e data de validade da requisição.</p>
+      <button onclick="checkSignToken()" class="btn btn-primary">Consultar</button>
+      <div class="code">
+      Exemplo:
+      <pre><code class="javascript">
+$.ajax({
+	url : 'http://teste.local/check_auth_key.php',
+	type : 'POST',
+	data : {token : signToken},
+	success : function(data, status, xhr) {
+		if(data.success){
+			console.log(data);
+			alert("Saída no console");
+		}
+	},
+	error: function(statusCode, msg){
+		console.log(statusCode == 0 ? msg: JSON.parse(msg));
+		alert(statusCode == 0 ? msg: JSON.parse(msg));
+	}
+});
+      </code></pre>
+      </div>
+      <br>
+
+
+
     </div>
 
 
