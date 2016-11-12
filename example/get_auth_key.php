@@ -28,7 +28,7 @@ $headr[] = 'Authorization: Bearer '. $clientToken;
 
 curl_setopt_array($curl, array(
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_URL => 'https://discus.local/assinadorservice/getauthtoken',
+    CURLOPT_URL => 'https://www.discustecnologia.com.br/assinadorservice/getauthtoken',
     CURLOPT_SSL_VERIFYPEER => false, //tirar para produção
 	CURLOPT_SSL_VERIFYHOST => false, //tirar para produção
     CURLOPT_TIMEOUT => 30,
