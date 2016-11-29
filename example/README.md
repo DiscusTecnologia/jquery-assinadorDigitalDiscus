@@ -1,5 +1,5 @@
 # jquery-assinadorDigitalDiscus
-![logo Discus Tecnologia](http://www.discustecnologia.com.br/images/logo_pq.png)
+![logo Discus Tecnologia](https://www.discustecnologia.com.br/images/logo_pq.png)
 
 Exemplo de uso do plugin para jQuery para usar o Assinador Digital - Discus Tecnologia
 

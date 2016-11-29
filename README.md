@@ -1,5 +1,5 @@
 # jquery-assinadorDigitalDiscus
-[![logo Discus Tecnologia](http://www.discustecnologia.com.br/images/logo_pq.png)](http://www.discustecnologia.com.br)
+[![logo Discus Tecnologia](https://www.discustecnologia.com.br/images/logo_pq.png)](http://www.discustecnologia.com.br)
 
 Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia
 
@@ -7,7 +7,7 @@ Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia
 
 
 
-Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia Este plugin para jQuery é distribuído livremente, mas o uso do Assinador Digital requer licença, entre em contato para adiquirir sua licença pelo email contato@discustecnologia.com.br, ou se preferir veja mais informações em [www.discustecnologia.com.br/assinador](www.discustecnologia.com.br/assinador).
+Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia Este plugin para jQuery é distribuído livremente, mas o uso do Assinador Digital requer licença, entre em contato para adiquirir sua licença pelo email contato@discustecnologia.com.br, ou se preferir veja mais informações em [https://www.discustecnologia.com.br/pt/assinador](https://www.discustecnologia.com.br/pt/assinador).
 
 
 
@@ -46,7 +46,7 @@ Você pode usar o Assinador Digital - Discus Tecnologia e este plugin para jQuer
 Você precisa adquirir o Assinador Digital - Discus Tecnologia. Entre em [contato] conosco e solicite uma licença.
 Para executar o Assinador Digital os usuários precisam ter o [Java SE Runtime Environment 8](http://www.oracle.com/technetwork/pt/java/javase/downloads/) instalada.
 
-  [contato]: http://www.discustecnologia.com.br/contato
+  [contato]: https://www.discustecnologia.com.br/pt/contato
 
 
 
@@ -76,5 +76,5 @@ Copyright © 2016 [Discus Tecnologia][1]
 
 Licenciado sob a licença MIT.
 
-  [1]: http://www.discustecnologia.com.br
+  [1]: https//www.discustecnologia.com.br
 
