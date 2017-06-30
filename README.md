@@ -13,7 +13,7 @@ Plugin jQuery para comunicação com o Assinador Digital - Discus Tecnologia Est
 
 ## O que é o Assinador Digital - Discus Tecnologia?
 
-O Assinador Digital é um aplicativo para que você possa utilizar suas aplicações web certificados digitais do tipo A3 via PKCS11 para realizar assinaturas digitais no padrão PKCS7 com a possibilidade de incluir carimbos de tempo nas assinaturas.
+O Assinador Digital é um aplicativo para você possa utilizar em suas aplicações web certificados digitais do tipo A3 via PKCS11 para realizar assinaturas digitais no padrão PKCS7 com a possibilidade de incluir carimbos de tempo nas assinaturas.
 
 Você pode assinar tanto dados em texto ou arquivos PDF, tal como realizar validações nas assinaturas.
 
